@@ -30,6 +30,16 @@ button {
       color: $primary;
     }
   }
+
+  &.danger {
+    background-color: $danger;
+    color: $danger-color;
+  }
+
+  &.info {
+    background-color: $info;
+    color: $info-color;
+  }
 }
 
 select, input {

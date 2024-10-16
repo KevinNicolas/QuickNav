@@ -1,1 +1,1 @@
-{"root":["./src/main.ts","./src/vite-env.d.ts","./src/options/options.main.ts","./src/popup/popup.main.ts","./src/components/Icon.vue","./src/options/Options.vue","./src/popup/Popup.vue"],"version":"5.6.2"}
+{"root":["./src/main.ts","./src/vite-env.d.ts","./src/options/options.main.ts","./src/popup/popup.main.ts","./src/types/localStorageKeys.ts","./src/types/profiles.ts","./src/utils/chrome.util.ts","./src/components/Icon.vue","./src/options/Options.vue","./src/options/components/ProfileTable.vue","./src/popup/Popup.vue"],"version":"5.6.2"}

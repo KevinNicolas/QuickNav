@@ -8,6 +8,5 @@
     "default_popup": "popup.html",
     "default_icon": "vite.svg"
   },
-  "permissions": ["scripting"],
-  "host_premissions": ["http://*/*", "https://*/*"]
+  "permissions": ["scripting", "storage"]
 }

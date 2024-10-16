@@ -1,6 +1,9 @@
 <script lang="ts" setup>
   import { ref, onMounted } from 'vue'
   import Icon from '../components/Icon.vue';
+  import { openExtensionOptions, localStorage } from '../utils/chrome.util'
+import { LocalStorageKeys } from '../types/localStorageKeys';
+import { IProfile } from '../types/profiles';
   
   const SUBMIT_TYPE = Object.freeze({
     currentTab: 'current-tab',
@@ -10,13 +13,15 @@
     BASEURL: 'baseurl',
     ENDPOINT: 'endpoint'
   })
-  const profiles = ref<Array<{ profileName: string, baseurl: string, disabled?: boolean, selected?: boolean }>>([]);
+  const profiles = ref<Array<IProfile & { disabled?: boolean, selected?: boolean }>>([]);
 
-  onMounted(() => {
-    profiles.value = [
+  onMounted(async () => {
+    const storagedProfiles = await localStorage.getArrayItem<IProfile>(LocalStorageKeys.profiles)
+    if (storagedProfiles.length) profiles.value = storagedProfiles.map((item: IProfile, index: number) => ({ ...item, selected: index === 0 }))
+    else profiles.value = [
       {
         profileName: 'Sin perfil',
-        baseurl: '',
+        urlbase: '',
         disabled: true,
         selected: true
       }
@@ -39,7 +44,7 @@
   }
 
   function openOptions() {
-    chrome.tabs.create({ 'url': 'chrome://extensions/?options=' + chrome.runtime.id });
+    openExtensionOptions();
   }
 </script>
 
@@ -54,7 +59,7 @@
         <select :name="FORM_FIELDS.BASEURL" :id="FORM_FIELDS.BASEURL">
           <option
             v-for="(profile, index) in profiles" :key="index"
-            :value="profile.baseurl"
+            :value="profile.urlbase"
             :disabled="profile.disabled"
             :selected="profile.selected"
           >
