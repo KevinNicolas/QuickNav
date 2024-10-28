@@ -23,23 +23,37 @@
     profiles.value = [...profiles.value, newProfile]
     localStorage.setItem(LocalStorageKeys.profiles, profiles.value);
   }
+
+  function handleUpdateProfile({ editedProfile, profileNameToEdit }: { editedProfile: IProfile, profileNameToEdit: string }) {
+    const indexOfProfile = profiles.value.findIndex(({ profileName }) => profileName.toLowerCase() === profileNameToEdit.toLowerCase())
+    if (indexOfProfile < 0) return alert(`No se encontro un perfil con el nombre "${profileNameToEdit}""`)
+
+    profiles.value[indexOfProfile] = editedProfile;
+    localStorage.setItem(LocalStorageKeys.profiles, profiles.value);
+  }
 </script>
 
 <template>
   <main class="options">
     <h4>Lista de perfiles</h4>
-    <profile-table :profiles="profiles" @delete-profile="handleDeleteProfile" @new-profile="handleNewProfile" />
+    <profile-table
+      :profiles="profiles"
+      @delete-profile="handleDeleteProfile"
+      @new-profile="handleNewProfile"
+      @update-profile="handleUpdateProfile"
+    />
   </main>
 </template>
 
 <style lang="scss" scoped>
   @import '../style.scss';
 
-  .options {
-    // FIXME remove
-    margin: 1rem;
-    border: 1px solid white;
+  h4 {
+    font-size: 1.25rem;
+  }
 
+  .options {
     min-height: 35rem;
+    margin: 1rem;
   }
 </style>
