@@ -1,6 +1,5 @@
 export function openExtensionOptions() {
   chrome.runtime.openOptionsPage();
-  // chrome.tabs.create({ 'url': 'chrome://extensions/?options=' + chrome.runtime.id });
 }
 
 export const localStorage = {

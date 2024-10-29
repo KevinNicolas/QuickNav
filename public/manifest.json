@@ -4,9 +4,15 @@
   "description": "Navigate with a base url",
   "version": "1.0",
   "options_page": "options.html",
+  "icons": {
+    "16": "icon.png",
+    "32": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
   "action": {
     "default_popup": "popup.html",
-    "default_icon": "vite.svg"
+    "default_icon": "icon.png"
   },
   "permissions": ["scripting", "storage"]
 }
