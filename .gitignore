@@ -25,3 +25,5 @@ dist-ssr
 
 # Build
 build
+build.crx
+build.pem
